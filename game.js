@@ -14,10 +14,21 @@ const StopwatchIntervalId = setInterval(() => {
     }
 }, 1000);
 
+
 // card
 const cards_elmt = document.querySelectorAll("button");
 var cards_sequence = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 const cards_content = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"];
+
+function shuffle(arr) {
+    for (let i = arr.length - 1; i >= 0; --i) {
+        let j = Math.floor(Math.random() * 10);
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+
+shuffle(cards_sequence);
+
 
 var has_flipped_card = false;
 var flipped_card_id;
