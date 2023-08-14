@@ -18,7 +18,25 @@ const StopwatchIntervalId = setInterval(() => {
 // card
 const cards_elmt = document.querySelectorAll("button");
 var cards_sequence = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-const cards_content = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"];
+const cards_key = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2"];
+const cards_value = {
+    "A1": "황성빈",
+    "A2": "https://file.giantsclub.com/upload2014/Player/50500_s.jpg",
+    "B1": "손성빈",
+    "B2": "https://file.giantsclub.com/upload2014/Player/51528_s.jpg",
+    "C1": "정훈",
+    "C2": "https://file.giantsclub.com/upload2014/Player/60523_s.jpg",
+    "D1": "구승민",
+    "D2": "https://file.giantsclub.com/upload2014/Player/63543_s.jpg",
+    "E1": "한동희",
+    "E2": "https://file.giantsclub.com/upload2014/Player/68525_s.jpg",
+    "F1": "이정훈",
+    "F2": "https://file.giantsclub.com/upload2014/Player/67644_s.jpg",
+    "G1": "고승민",
+    "G2": "https://file.giantsclub.com/upload2014/Player/69517_s.jpg",
+    "H1": "윤동희",
+    "H2": "https://file.giantsclub.com/upload2014/Player/52591_s.jpg",
+};
 
 function shuffle(arr) {
     for (let i = arr.length - 1; i >= 0; --i) {
@@ -36,18 +54,30 @@ var flipped_card_id;
 var num_flipped_card = 0;
 
 function IsPair(cid1, cid2) {
-    return cards_content[cards_sequence[cid1]][0] == cards_content[cards_sequence[cid2]][0];
+    return cards_key[cards_sequence[cid1]][0] == cards_key[cards_sequence[cid2]][0];
 }
 
 function onClick(e) {
-    if (e.target.style.backgroundColor == "white")
+    if (e.target.getAttribute("clicked") == "true")
         return;
+
+    e.target.setAttribute("clicked", "true");
 
     num_flipped_card += 1;
 
     const cid = Number(e.target.id[5]) * 10 + Number(e.target.id[6]);
-    e.target.innerText = cards_content[cards_sequence[cid]];
-    e.target.style.backgroundColor = "white";
+    const cseq = cards_sequence[cid];
+    const ckey = cards_key[cseq];
+    const cvalue = cards_value[ckey];
+
+    if (cvalue[0] != 'h') {
+        e.target.innerText = cvalue;
+        e.target.style.backgroundColor = "white";
+    }
+    else {
+        e.target.style.backgroundImage = `url(${cvalue})`;
+    }
+    e.target.style.backgroundSize = "65px 90px"
 
     if (has_flipped_card) {
         if (!IsPair(flipped_card_id, cid)) {
@@ -56,10 +86,14 @@ function onClick(e) {
                     num_flipped_card -= 2;
 
                     cards_elmt[flipped_card_id].innerHTML = "";
+                    cards_elmt[flipped_card_id].style.backgroundImage = "";
                     cards_elmt[flipped_card_id].style.backgroundColor = "darkgray";
+                    cards_elmt[flipped_card_id].setAttribute("clicked", false);
 
-                    cards_elmt[cid].innerHTML = "";
-                    cards_elmt[cid].style.backgroundColor = "darkgray";
+                    e.target.innerHTML = "";
+                    e.target.style.backgroundImage = "";
+                    e.target.style.backgroundColor = "darkgray";
+                    e.target.setAttribute("clicked", false);
                 }
 
                 has_flipped_card = false;
