@@ -14,7 +14,6 @@ const StopwatchIntervalId = setInterval(() => {
     }
 }, 1000);
 
-
 // card
 const cards_elmt = document.querySelectorAll("button");
 var cards_sequence = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -109,7 +108,10 @@ function onClick(e) {
 
     if (num_flipped_card == 16) {
         clearInterval(StopwatchIntervalId);
-        setTimeout(() => { alert("Win!") }, 100);
+        setTimeout(() => {
+            var userTime = document.getElementById("stopwatch").innerText;
+            var userName = window.prompt("Win! What's your name?");
+        }, 100);
     }
 }
 
