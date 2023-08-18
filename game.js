@@ -111,6 +111,8 @@ function onClick(e) {
         setTimeout(() => {
             var userTime = document.getElementById("stopwatch").innerText;
             var userName = window.prompt("Win! What's your name?");
+
+            window.alert(`${userName} won the game in ${userTime}.`);
         }, 100);
     }
 }
