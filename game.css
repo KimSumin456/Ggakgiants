@@ -12,4 +12,11 @@ main {
 
 button[id^="card-"] {
     background-color: darkgray;
+    background-size: 65px 90px;
+}
+
+#picture {
+    width: 625px;
+    height: 575px;
+    background-repeat: no-repeat;
 }

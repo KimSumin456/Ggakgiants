@@ -69,14 +69,16 @@ function onClick(e) {
     const ckey = cards_key[cseq];
     const cvalue = cards_value[ckey];
 
-    if (cvalue[0] != 'h') {
+    if (cvalue[0] != 'h') { //https의 h
         e.target.innerText = cvalue;
         e.target.style.backgroundColor = "white";
     }
     else {
         e.target.style.backgroundImage = `url(${cvalue})`;
     }
-    e.target.style.backgroundSize = "65px 90px"
+
+    document.getElementById("name").innerText = cards_value[ckey[0] + '1'];
+    document.getElementById("picture").style.backgroundImage = `url(${cards_value[ckey[0] + '2'].replace('s.jpg', 'm.png')})`;
 
     if (has_flipped_card) {
         if (!IsPair(flipped_card_id, cid)) {
