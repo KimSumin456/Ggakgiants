@@ -78,7 +78,7 @@ function onClick(e) {
     }
 
     document.getElementById("name").innerText = cards_value[ckey[0] + '1'];
-    document.getElementById("picture").style.backgroundImage = `url(${cards_value[ckey[0] + '2'].replace('s.jpg', 'm.png')})`;
+    document.getElementById("picture").src = cards_value[ckey[0] + '2'].replace('s.jpg', 'm.png');
 
     if (has_flipped_card) {
         if (!IsPair(flipped_card_id, cid)) {
