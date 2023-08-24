@@ -81,27 +81,23 @@ function onClick(e) {
     document.getElementById("picture").src = cards_value[ckey[0] + '2'].replace('s.jpg', 'm.png');
 
     if (has_flipped_card) {
-        if (!IsPair(flipped_card_id, cid)) {
-            setTimeout(() => {
-                if (!IsPair(flipped_card_id, cid)) {
-                    num_flipped_card -= 2;
-
-                    cards_elmt[flipped_card_id].innerHTML = "";
-                    cards_elmt[flipped_card_id].style.backgroundImage = "";
-                    cards_elmt[flipped_card_id].style.backgroundColor = "darkgray";
-                    cards_elmt[flipped_card_id].setAttribute("clicked", false);
-
-                    e.target.innerHTML = "";
-                    e.target.style.backgroundImage = "";
-                    e.target.style.backgroundColor = "darkgray";
-                    e.target.setAttribute("clicked", false);
-                }
-
-                has_flipped_card = false;
-            }, 500);
-        }
-
         has_flipped_card = false;
+
+        if (!IsPair(flipped_card_id, cid)) {
+            num_flipped_card -= 2;
+            cards_elmt[flipped_card_id].setAttribute("clicked", false);
+            e.target.setAttribute("clicked", false);
+
+            setTimeout(() => {
+                cards_elmt[flipped_card_id].innerHTML = "";
+                cards_elmt[flipped_card_id].style.backgroundImage = "";
+                cards_elmt[flipped_card_id].style.backgroundColor = "darkgray";
+
+                e.target.innerHTML = "";
+                e.target.style.backgroundImage = "";
+                e.target.style.backgroundColor = "darkgray";
+            }, 200);
+        }
     }
     else {
         flipped_card_id = cid;
