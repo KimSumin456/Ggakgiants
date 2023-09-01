@@ -91,11 +91,11 @@ function onClick(e) {
             setTimeout(() => {
                 cards_elmt[flipped_card_id].innerHTML = "";
                 cards_elmt[flipped_card_id].style.backgroundImage = "";
-                cards_elmt[flipped_card_id].style.backgroundColor = "darkgray";
+                cards_elmt[flipped_card_id].style.backgroundColor = "rgb(108, 172, 228)";
 
                 e.target.innerHTML = "";
                 e.target.style.backgroundImage = "";
-                e.target.style.backgroundColor = "darkgray";
+                e.target.style.backgroundColor = "rgb(108, 172, 228)";
             }, 200);
         }
     }

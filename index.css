@@ -1,7 +1,18 @@
 body {
+    margin: 30px 15% 30px 15%;
     text-align: center;
+    color: rgb(4, 30, 66);
 }
 
 h1 {
     margin: 30px;
+}
+
+main {
+    margin: 60px;
+}
+
+#logo {
+    border: 10px solid rgb(108, 172, 228);
+    padding: 15%;
 }
