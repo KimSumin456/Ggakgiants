@@ -47,6 +47,7 @@ function shuffle(arr) {
 shuffle(cards_sequence);
 
 
+var is_break = false;
 var has_flipped_card = false;
 var flipped_card_id;
 
@@ -59,8 +60,18 @@ function IsPair(cid1, cid2) {
 function onClick(e) {
     if (e.target.getAttribute("clicked") == "true")
         return;
+    else
+        e.target.setAttribute("clicked", "true");
 
-    e.target.setAttribute("clicked", "true");
+    console.log(is_break);
+
+    if (is_break)
+        return;
+    else if (has_flipped_card) {
+        is_break = true;
+    }
+
+    console.log(is_break + "\n");
 
     num_flipped_card += 1;
 
@@ -81,8 +92,6 @@ function onClick(e) {
     document.getElementById("picture").src = cards_value[ckey[0] + '2'].replace('s.jpg', 'm.png');
 
     if (has_flipped_card) {
-        has_flipped_card = false;
-
         if (!IsPair(flipped_card_id, cid)) {
             num_flipped_card -= 2;
             cards_elmt[flipped_card_id].setAttribute("clicked", false);
@@ -98,6 +107,11 @@ function onClick(e) {
                 e.target.style.backgroundColor = "rgb(108, 172, 228)";
             }, 200);
         }
+
+        setTimeout(() => {
+            is_break = false;
+        }, 200);
+        has_flipped_card = false;
     }
     else {
         flipped_card_id = cid;
